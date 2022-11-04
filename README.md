@@ -1,4 +1,4 @@
-# Calelnder-with-Google
+# Calender-with-Google
 박도현의 도도캠프
 
 ## 🔥 목표 : 12월 안에 기술 면접 보기
