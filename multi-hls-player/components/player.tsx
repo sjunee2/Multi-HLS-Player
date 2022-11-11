@@ -30,6 +30,7 @@ export default function Player({ url }:{
         controls={true}
         width="50%"
         height="auto"
+        muted={true}
       />
   )
 }

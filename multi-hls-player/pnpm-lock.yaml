@@ -4,6 +4,7 @@ specifiers:
   '@types/node': 18.11.9
   '@types/react': 18.0.25
   '@types/react-dom': 18.0.8
+  '@types/tailwindcss': ^3.1.0
   autoprefixer: ^10.4.13
   eslint: 8.27.0
   eslint-config-next: 13.0.2
@@ -28,6 +29,7 @@ dependencies:
   typescript: 4.8.4
 
 devDependencies:
+  '@types/tailwindcss': 3.1.0_postcss@8.4.18
   autoprefixer: 10.4.13_postcss@8.4.18
   postcss: 8.4.18
   tailwindcss: 3.2.3_postcss@8.4.18
@@ -270,6 +272,16 @@ packages:
   /@types/scheduler/0.16.2:
     resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
     dev: false
+
+  /@types/tailwindcss/3.1.0_postcss@8.4.18:
+    resolution: {integrity: sha512-JxPzrm609hzvF4nmOI3StLjbBEP3WWQxDDJESqR1nh94h7gyyy3XSl0hn5RBMJ9mPudlLjtaXs5YEBtLw7CnPA==}
+    deprecated: This is a stub types definition. tailwindcss provides its own type definitions, so you do not need this installed.
+    dependencies:
+      tailwindcss: 3.2.3_postcss@8.4.18
+    transitivePeerDependencies:
+      - postcss
+      - ts-node
+    dev: true
 
   /@typescript-eslint/parser/5.42.1_rmayb2veg2btbq6mbmnyivgasy:
     resolution: {integrity: sha512-kAV+NiNBWVQDY9gDJDToTE/NO8BHi4f6b7zTsVAJoTkmB/zlfOpiEVBzHOKtlgTndCKe8vj9F/PuolemZSh50Q==}
