@@ -4,6 +4,7 @@ import styles from '../styles/Home.module.css'
 import dynamic from 'next/dynamic'
 import Sidedrawer from '../components/sidedrawer'
 import { useState } from 'react'
+import Urlcase from '../components/urlcase'
 
 const DynamicPlayer = dynamic(() => import('../components/player'), {
   ssr: false,
@@ -12,6 +13,8 @@ const DynamicPlayer = dynamic(() => import('../components/player'), {
 export default function Home() {
 
   const [show, setShow] = useState(false);
+
+  const [urlList, setUrlList] = useState<string[]>(["https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8"]);
 
   return (
     <div className="container text-sky-400">
@@ -37,7 +40,13 @@ export default function Home() {
         Control 
         </button>
 
-        <Sidedrawer show={show} />
+        <Sidedrawer show={show}>
+          {urlList.map((url, index) => {
+            return(
+              <Urlcase url={url} key={index} />
+            )
+          })}
+        </Sidedrawer>
       </main>
 
       <footer className={styles.footer}>
