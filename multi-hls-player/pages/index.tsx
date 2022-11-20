@@ -14,7 +14,7 @@ export default function Home() {
 
   const [show, setShow] = useState(false);
 
-  const [urlList, setUrlList] = useState<string[]>(["https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8"]);
+  const [urlList, setUrlList] = useState<string[]>(["https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8", "https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8", ]);
 
   return (
     <div className="container text-sky-400">
@@ -24,14 +24,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <h1 className='text-slate-700'>
+        Multi HLS Player
+      </h1>
+
       <main className="container">
-
-        <div className='text-sky-400 bg-red-100 w-full flex justify-center'>Tailwind Test</div>
-        <h1 className="text-3xl">Now Playing</h1>
-        <DynamicPlayer url="https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8" />
-        <DynamicPlayer url="https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8" />
-        <DynamicPlayer url="https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8" />
-
         <button 
           className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg  focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out mr-1.5" 
           type="button" 
@@ -40,25 +37,28 @@ export default function Home() {
         Control 
         </button>
 
-        <Sidedrawer show={show}>
+        <Sidedrawer show={show} setShow={setShow} urlList={urlList} setUrlList={setUrlList}>
           {urlList.map((url, index) => {
             return(
               <Urlcase url={url} key={index} />
             )
           })}
         </Sidedrawer>
+
+        {urlList.map((url, index) => {
+          return(
+            <DynamicPlayer url={url} key={index} />
+          )
+        })}
+  
+        <h1 className="text-3xl">Now Playing</h1>
+
+        
       </main>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
+      <footer className=''>
+        <a>
+          Contact me 
         </a>
       </footer>
     </div>

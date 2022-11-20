@@ -28,7 +28,7 @@ export default function Player({ url }:{
         src={url}
         autoPlay={true}
         controls={true}
-        width="50%"
+        width="45%"
         height="auto"
         muted={true}
       />
