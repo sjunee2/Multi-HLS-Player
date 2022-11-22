@@ -1,20 +1,16 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import dynamic from 'next/dynamic'
 import Sidedrawer from '../components/sidedrawer'
 import { useState } from 'react'
 import Urlcase from '../components/urlcase'
-
-const DynamicPlayer = dynamic(() => import('../components/player'), {
-  ssr: false,
-})
+import Playercase from '../components/playercase'
 
 export default function Home() {
 
   const [show, setShow] = useState(false);
 
-  const [urlList, setUrlList] = useState<string[]>(["https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8", "https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8", ]);
+  const [urlList, setUrlList] = useState<string[]>(["https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8"]);
 
   return (
     <div className="container text-sky-400">
@@ -40,17 +36,17 @@ export default function Home() {
         <Sidedrawer show={show} setShow={setShow} urlList={urlList} setUrlList={setUrlList}>
           {urlList.map((url, index) => {
             return(
-              <Urlcase url={url} key={index} />
+              <Urlcase url={url} key={index} urlList={urlList} setUrlList={setUrlList}/>
             )
           })}
         </Sidedrawer>
 
         {urlList.map((url, index) => {
           return(
-            <DynamicPlayer url={url} key={index} />
+            <Playercase url={url} key={index} />
           )
         })}
-  
+
         <h1 className="text-3xl">Now Playing</h1>
 
         

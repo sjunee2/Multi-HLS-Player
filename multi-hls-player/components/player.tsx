@@ -1,5 +1,7 @@
 import ReactHlsPlayer from "react-hls-player/dist"
 import { useRef } from "react";
+import axios from "axios";
+import { useState } from "react";
 
 export default function Player({ url }:{
   url: string
