@@ -1,18 +1,24 @@
 import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import axios from 'axios'
+import { useEffect } from 'react'
 
 const DynamicPlayer = dynamic(() => import('../components/player'), {
   ssr: false,
 })
 
-export default function Playercase( { url, key } : { url: string, key: number } ) {
+export default function PlayerWrapper( { url, key } : { url: string, key: number } ) {
 
   const [available, setAvailable] = useState<Boolean>(false);
+
+  useEffect(() => {
+    urlChecker();
+  }, [])
 
   async function urlChecker(){
     try{
       const response = await axios.get(url);
+      console.log(response)
       if (response.status == 200) {
         setAvailable(true);
       }
@@ -24,22 +30,16 @@ export default function Playercase( { url, key } : { url: string, key: number } 
     };
   }
 
-  urlChecker();
-
-  const playHandler = function(){
-    if (!available) {
-      return ("hidden");
-    }
-    else {
-      return ("");
-    }
-  }
-
   return (
-    <div className={playHandler()}>
-      <DynamicPlayer url={url} key={key} />
-      <div>{available.toString()}, {url}</div>
-    </div>
+    <>
+      {available &&
+      <div>
+        <DynamicPlayer url={url} key={key} />
+        <div>{available.toString()}, {url}</div>
+      </div>
+      }
+    </>
+    
   )
 
 }

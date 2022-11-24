@@ -3,8 +3,8 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Sidedrawer from '../components/sidedrawer'
 import { useState } from 'react'
-import Urlcase from '../components/urlcase'
-import Playercase from '../components/playercase'
+import UrlWrapper from '../components/urlWrapper'
+import PlayerWrapper from '../components/playerWrapper'
 
 export default function Home() {
 
@@ -36,14 +36,14 @@ export default function Home() {
         <Sidedrawer show={show} setShow={setShow} urlList={urlList} setUrlList={setUrlList}>
           {urlList.map((url, index) => {
             return(
-              <Urlcase url={url} key={index} urlList={urlList} setUrlList={setUrlList}/>
+              <UrlWrapper url={url} key={index} urlList={urlList} setUrlList={setUrlList}/>
             )
           })}
         </Sidedrawer>
 
         {urlList.map((url, index) => {
           return(
-            <Playercase url={url} key={index} />
+            <PlayerWrapper url={url} key={index} />
           )
         })}
 
