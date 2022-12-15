@@ -41,15 +41,16 @@ export default function Home() {
           })}
         </Sidedrawer>
 
-        {urlList.map((url, index) => {
-          return(
-            <PlayerWrapper url={url} key={index} />
-          )
-        })}
+        <div className="flex flex-wrap">
+          {urlList.map((url, index) => {
+            return(
+              <PlayerWrapper url={url} key={index} />
+            )
+          })}
+        </div>
 
         <h1 className="text-3xl">Now Playing</h1>
 
-        
       </main>
 
       <footer className=''>

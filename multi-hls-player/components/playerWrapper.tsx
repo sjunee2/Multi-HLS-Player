@@ -33,9 +33,8 @@ export default function PlayerWrapper( { url, key } : { url: string, key: number
   return (
     <>
       {available &&
-      <div>
+      <div className='inline-block'>
         <DynamicPlayer url={url} key={key} />
-        <div>{available.toString()}, {url}</div>
       </div>
       }
     </>
