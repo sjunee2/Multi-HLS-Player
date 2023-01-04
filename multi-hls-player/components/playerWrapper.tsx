@@ -15,13 +15,7 @@ export default function PlayerWrapper( { url, key } : { url: string, key: number
 
   const dispatch = useAppDispatch();
 
-  const playable = () => {
-    try{
-      useSelector((state: RootState) => state.url.urlList.filter((url) => url.id === key)[0].playable);
-    } catch (error) {
-      return false;
-    }
-  }
+  const playable = useSelector((state: RootState) => state.url.urlList.filter((url) => url.id === key)[0].playable);
 
   useEffect(() => {
     urlChecker();
