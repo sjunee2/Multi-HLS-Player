@@ -11,11 +11,17 @@ const DynamicPlayer = dynamic(() => import('../components/player'), {
   ssr: false,
 })
 
-export default function PlayerWrapper( { url, id } : { url: string, id: number } ) {
+export default function PlayerWrapper( { url, key } : { url: string, key: number } ) {
 
   const dispatch = useAppDispatch();
 
-  const playable = useSelector((state: RootState) => state.url.urlList.filter((url) => url.id === id)[0].playable);
+  const playable = () => {
+    try{
+      useSelector((state: RootState) => state.url.urlList.filter((url) => url.id === key)[0].playable);
+    } catch (error) {
+      return false;
+    }
+  }
 
   useEffect(() => {
     urlChecker();
@@ -27,10 +33,10 @@ export default function PlayerWrapper( { url, id } : { url: string, id: number }
       if (response.status === 200) {
         null;
       } else {
-        dispatch(changePlayable(id));
+        dispatch(changePlayable(key));
       }
     } catch (error) {
-      dispatch(changePlayable(id));
+      dispatch(changePlayable(key));
     };
   }
 

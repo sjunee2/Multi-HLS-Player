@@ -18,9 +18,9 @@ export default function Sidedrawer({ show, setShow }:{
     dispatch(addUrl(event.currentTarget.new_url.value));
   }
 
-  const urlMapper = urlList.map((url: UrlType, key: number) => {
+  const urlMapper = urlList.map((url: UrlType) => {
     return(
-      <UrlWrapper url={url.url} id={url.id} />
+      <UrlWrapper url={url.url} key={url.id} />
     )
   })  
 
