@@ -19,7 +19,7 @@ export default function Home() {
   
   const playerMapper = urlList.map((url: UrlType) => {
     return(
-      <PlayerWrapper url={url.url} key={url.id} />
+      <PlayerWrapper url={url.url} key={url.id} id={url.id} />
     )
   })  
 

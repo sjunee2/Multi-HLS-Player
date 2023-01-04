@@ -20,7 +20,7 @@ export default function Sidedrawer({ show, setShow }:{
 
   const urlMapper = urlList.map((url: UrlType) => {
     return(
-      <UrlWrapper url={url.url} key={url.id} />
+      <UrlWrapper url={url.url} key={url.id} id={url.id} />
     )
   })  
 
