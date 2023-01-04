@@ -17,7 +17,7 @@ export default function Home() {
 
   const urlList = useSelector((state: RootState) => state.url.urlList);
   
-  const playerMapper = urlList.map((url: UrlType) => {
+  const playerMapper = urlList.map((url: UrlType, key: number) => {
     return(
       <PlayerWrapper url={url.url} id={url.id} />
     )
