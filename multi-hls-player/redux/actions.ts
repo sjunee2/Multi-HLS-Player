@@ -1,1 +1,1 @@
-export { addUrl, deleteUrl, editUrl } from "./slice/url";
+export { addUrl, deleteUrl, editUrl, changePlayable } from "./slice/url";

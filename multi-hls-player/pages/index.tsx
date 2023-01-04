@@ -5,12 +5,23 @@ import Sidedrawer from '../components/sidedrawer'
 import { useState } from 'react'
 import UrlWrapper from '../components/urlWrapper'
 import PlayerWrapper from '../components/playerWrapper'
+import { useAppDispatch } from '../redux/store'
+import { useSelector } from 'react-redux'
+import { addUrl, deleteUrl, editUrl, UrlType } from '../redux/slice/url'
+import { RootState } from '../redux/reducer'
+import { url } from 'inspector'
 
 export default function Home() {
 
   const [show, setShow] = useState(false);
 
-  const [urlList, setUrlList] = useState<string[]>(["https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8"]);
+  const urlList = useSelector((state: RootState) => state.url.urlList);
+  
+  const playerMapper = urlList.map((url: UrlType) => {
+    return(
+      <PlayerWrapper url={url.url} id={url.id} />
+    )
+  })  
 
   return (
     <div className="container text-sky-400">
@@ -20,7 +31,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1 className='text-slate-700'>
+      <h1 className='text-slate-700 text-lg'>
         Multi HLS Player
       </h1>
 
@@ -33,29 +44,18 @@ export default function Home() {
         Control 
         </button>
 
-        <Sidedrawer show={show} setShow={setShow} urlList={urlList} setUrlList={setUrlList}>
-          {urlList.map((url, index) => {
-            return(
-              <UrlWrapper url={url} key={index} urlList={urlList} setUrlList={setUrlList}/>
-            )
-          })}
-        </Sidedrawer>
+        <Sidedrawer show={show} setShow={setShow} />
 
         <div className="flex flex-wrap">
-          {urlList.map((url, index) => {
-            return(
-              <PlayerWrapper url={url} key={index} />
-            )
-          })}
+          {playerMapper}
         </div>
-
-        <h1 className="text-3xl">Now Playing</h1>
-
       </main>
 
-      <footer className=''>
-        <a>
-          Contact me 
+      <footer className='text-black'>
+        Contact me: 
+        <br/>
+        <a className='text-red' href='tx0203@gmail.com'>
+          tx0203@gmail.com  
         </a>
       </footer>
     </div>

@@ -3,29 +3,45 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface UrlType {
   id: number;
   url: string;
+  playable: boolean;
 }
 
-const initialUrl = {
-  urllist: [] as UrlType[],
+interface InitialType {
+  urlList: UrlType[]
 };
+
+const initialUrl: InitialType = {
+  urlList: [{id: 0, url: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8", playable: true}]
+}
 
 const urlSlice = createSlice({
   name: "url",
   initialState: initialUrl,
   reducers: {
-    addUrl: (state, action: PayloadAction<UrlType>) => {
-      state.urllist.push(action.payload);
+    addUrl: (state, action: PayloadAction<string>) => {
+      const url = {
+        id: Math.random(),
+        url: action.payload,
+        playable: true,
+      };
+
+      state.urlList.push(url);
     },
     deleteUrl: (state, action: PayloadAction<number>) => {
-      state.urllist = state.urllist.filter((url) => url.id !== action.payload);
+      state.urlList = state.urlList.filter((url) => url.id !== action.payload);
     },
     editUrl: (state, action: PayloadAction<UrlType>) => {
-      const index = state.urllist.findIndex((url) => url.id === action.payload.id);
-      state.urllist[index] = action.payload;
+      const index = state.urlList.findIndex((url) => url.id === action.payload.id);
+      state.urlList[index] = action.payload;
+    },
+    changePlayable: (state, action: PayloadAction<number>) => {
+      const index = state.urlList.findIndex((url) => url.id === action.payload);
+      state.urlList[index].playable = false;
     },
   },
 });
 
-export const { addUrl, deleteUrl, editUrl } = urlSlice.actions;
+export const { addUrl, deleteUrl, editUrl, changePlayable } = urlSlice.actions;
 export default urlSlice.reducer;
+export type { UrlType };
 
